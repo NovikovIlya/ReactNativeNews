@@ -1,10 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, FlatList, ActivityIndicator,refreshControl ,RefreshControl,TouchableOpacity} from 'react-native';
+import {  Text, View, FlatList, ActivityIndicator,RefreshControl,TouchableOpacity} from 'react-native';
 import axios from 'axios';
 import Post from '../components/Post';
 import { useState, useEffect } from 'react';
 
-export default function Home() {
+export default function Home({navigation}) {
   const [items, setItems] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -42,20 +41,16 @@ export default function Home() {
 
   return (
     <View style={{marginTop:'50px'}}>
-      <Text />
-      <Text />
       <FlatList
         refreshControl={<RefreshControl refreshing={isLoading} onRefresh={fetchData}/>}
         style={{marginTop:'50px'}}
         data={items}
         renderItem={({ item }) => (
-          <TouchableOpacity >
+          <TouchableOpacity onPress={() => navigation.navigate('FullPostScreen',{id:item.id,title:item.title})}>
             <Post title={item.title} imageUrl={item.imageUrl} createdAt={item.createdAt} />
           </TouchableOpacity>
         )}
       />
-
-      
     </View>
   );
 }

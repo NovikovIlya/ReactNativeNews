@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
 import styled from 'styled-components/native';
 
 const PostView = styled.View`
@@ -31,14 +31,21 @@ const PostDate = styled.Text`
   font-size: 16px;
 `;
 
+const truncateTitle = (string) => {
+  if (string.length >= 50) {
+    return string.substring(0.5) + '...';
+  }
+  return string;
+};
+
 export default function Post({ title, imageUrl, createdAt }) {
   return (
     <View>
       <PostView>
         <PostImage source={{ uri: imageUrl }} />
         <PostDetails>
-          <PostTitle>{title}</PostTitle>
-          <PostDate>{createdAt}</PostDate>
+          <PostTitle>{truncateTitle(title)}</PostTitle>
+          <PostDate>{new Date(createdAt).toLocaleDateString()}</PostDate>
         </PostDetails>
       </PostView>
       <StatusBar theme="auto" />
