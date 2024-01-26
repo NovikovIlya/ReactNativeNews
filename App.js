@@ -1,20 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, FlatList, ActivityIndicator,refreshControl ,RefreshControl,TouchableOpacity} from 'react-native';
+import axios from 'axios';
+import Post from './components/Post';
+import { useState, useEffect } from 'react';
+import Home from './screens/Home';
+import { FullPostScreen } from './screens/FullPost';
 
 export default function App() {
+  
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View >
+        {/* <Home /> */}
+        <FullPostScreen/>
+        <StatusBar theme="auto" />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
